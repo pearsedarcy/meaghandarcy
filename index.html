@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meaghan D'Arcy is a qualified Accounting Technician based in Dublin, Ireland, offering expertise in financial reporting, tax preparation, and budget management.">
     <title>Meaghan D'Arcy | Account Technician</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,43 +19,89 @@
             },
         }
     </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your public key
+        })();
+    </script>
 </head>
 <body class="bg-white text-black font-sans">
-    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-black/30 border-b border-white/10">
-        <div class="container mx-auto px-6 lg:px-20">
-            <div class="flex items-center justify-between h-16">
-                <div class="text-xl font-bold text-white font-lora">Meaghan D'Arcy</div>
-                <ul class="flex space-x-8">
-                    <li><a href="#home" class="text-white hover:text-gray-300 transition-colors duration-200">Home</a></li>
-                    <li><a href="#about" class="text-white hover:text-gray-300 transition-colors duration-200">About</a></li>
-                    <li><a href="#experience" class="text-white hover:text-gray-300 transition-colors duration-200">Experience</a></li>
-                    <li><a href="#contact" class="text-white hover:text-gray-300 transition-colors duration-200">Contact</a></li>
-                </ul>
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/30 border-b border-white/10">
+      <div class="container mx-auto px-6 lg:px-20">
+        <div class="flex items-center justify-between h-16">
+          <div class="text-xl font-bold text-black font-lora">Meaghan D'Arcy</div>
+            <div class="lg:hidden justify-end">
+              <button id="menu-button" class="text-black focus:outline-none relative">
+                <!-- Menu Icon -->
+                <svg id="menu-icon" class="w-6 h-6 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+                <!-- Close Icon -->
+                <svg id="close-icon" class="w-6 h-6 absolute top-0 left-0 opacity-0 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
             </div>
+            <ul id="menu" class="hidden lg:flex space-x-8">
+              <li><a href="#home" class="text-black hover:text-gray-300 transition-colors duration-200">Home</a></li>
+              <li><a href="#about" class="text-black hover:text-gray-300 transition-colors duration-200">About</a></li>
+              <li><a href="#experience" class="text-black hover:text-gray-300 transition-colors duration-200">Experience</a></li>
+              <li><a href="#contact" class="text-black hover:text-gray-300 transition-colors duration-200">Contact</a></li>
+            </ul>
         </div>
+      </div>
+      <div id="mobile-menu" class="lg:hidden hidden">
+        <ul class="flex flex-col space-y-4 p-4 items-end">
+          <li><a href="#home" class="text-black hover:text-gray-300 transition-colors duration-200">Home</a></li>
+          <li><a href="#about" class="text-black hover:text-gray-300 transition-colors duration-200">About</a></li>
+          <li><a href="#experience" class="text-black hover:text-gray-300 transition-colors duration-200">Experience</a></li>
+          <li><a href="#contact" class="text-black hover:text-gray-300 transition-colors duration-200">Contact</a></li>
+        </ul>
+      </div>
     </nav>
-    <section class="flex p-0 " id="home">
-        <div class="container mx-auto px-6 lg:px-20  mt-40 flex justify-around">
+    <script>
+      document.getElementById('menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        
+        if (menu.classList.contains('hidden')) {
+          menu.classList.remove('hidden');
+          menuIcon.classList.add('opacity-0');
+          closeIcon.classList.remove('opacity-0');
+        } else {
+          menu.classList.add('hidden');
+          menuIcon.classList.remove('opacity-0');
+          closeIcon.classList.add('opacity-0');
+        }
+      });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="flex p-0" id="home">
+        <div class="container mx-auto px-6 lg:px-20 mt-20 flex justify-around items-center">
           <!-- Left Text Section -->
           <div class="w-full lg:w-1/2">
-            <h1 class="text-4xl lg:text-5xl font-bold mb-4 font-lora">
-              Welcome to <br />
-              Meaghan D'Arcy's <br />
+            <h1 class="text-3xl lg:text-5xl lg:leading-[1.6] font-bold mb-4 font-lora ">
+              Welcome to<br/>
+              Meaghan D'Arcy's<br />
               Professional Profile
             </h1>
             <p class="text-lg mb-6">
-              Meaghan D'Arcy is a Qualified Accounting Technician based in
+              I am a Qualified Accounting Technician based in
               Dublin, Ireland, with a passion for supporting financial operations.
-              With two years experience in practice, she is ready to take on new
+              With two years experience in practice, I am ready to take on new
               challenges and contribute to your team's success.
             </p>
             <!-- Buttons -->
             <div class="flex space-x-4">
               <button class="bg-white text-black px-6 py-2 rounded shadow">
-                Contact
+                <a href="#contact">Contact</a>
               </button>
               <button class="border border-white px-6 py-2 rounded shadow">
-                Learn More
+                <a href="#about">Learn More</a>
               </button>
             </div>
           </div>
@@ -69,18 +116,18 @@
         </div>
       </section>
 
-       <!-- Next Section -->
+    <!-- About Section -->
   <section class="py-16 px-6 lg:px-20 bg-white text-black" id="about">
     <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Text Content -->
       <div>
         <h6 class="font-bold mb-2">Dedicated</h6>
         <h2 class="text-3xl font-bold mb-4 font-lora">
-          Qualified Accounting Technician Ready for New Opportunities
+          A Qualified Accounting Technician Ready for New Opportunities
         </h2>
         <p class="text-lg mb-6">
-          Meaghan D'Arcy is a skilled accounts technician with extensive experience
-          in accounting and finance. She has a proven track record of delivering
+          I am a skilled accounts technician with extensive experience
+          in accounting and finance. I have a proven track record of delivering
           accurate financial reports and supporting businesses in achieving their
           financial goals.
         </p>
@@ -101,7 +148,7 @@
             Learn More
           </button>
           <button class="border border-black px-6 py-2 rounded shadow">
-            Contact
+            <a href="#contact">Contact</a>
           </button>
         </div>
       </div>
@@ -113,7 +160,7 @@
   </section>
 
 
-     <!-- Experience Section -->
+    <!-- Experience Section -->
   <section class="py-16 px-6 lg:px-20" id="experience">
     <div class="container mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
@@ -165,20 +212,21 @@
         <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
           <!-- Text Section -->
           <div>
-            <h2 class="text-3xl font-bold mb-4 font-lora">Discover the Advantages of Hiring Meaghan D'Arcy for Your Accounting Needs</h2>
+            <h2 class="text-3xl font-bold mb-4 font-lora">Why Work With Me</h2>
             <p class="text-lg mb-6">
-              Meaghan D'Arcy brings unparalleled accuracy and efficiency to every accounting task. With her extensive knowledge, she ensures your financial records are in expert hands.
+              I bring unparalleled accuracy and efficiency to every accounting task. 
+              With my extensive knowledge, I ensure your financial records are in expert hands.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               <!-- Advantage 1 -->
               <div>
                 <h3 class="text-xl font-bold mb-2 font-lora">Precision Matters</h3>
-                <p>Meaghan's attention to detail guarantees error-free financial statements and reports.</p>
+                <p>My attention to detail guarantees error-free financial statements and reports.</p>
               </div>
               <!-- Advantage 2 -->
               <div>
                 <h3 class="text-xl font-bold mb-2 font-lora">Efficiency First</h3>
-                <p>Her streamlined processes save you time and resources, enhancing your business operations.</p>
+                <p>My streamlined processes save you time and resources, enhancing your business operations.</p>
               </div>
             </div>
           </div>
@@ -190,7 +238,7 @@
       </section>
     
 
-    <!-- CV section -->
+    <!-- CV Download Section -->
     <section class="py-16 px-6 lg:px-20">
         <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8  items-center">
             <!-- Text Section -->
@@ -199,7 +247,9 @@
                 <p class="text-lg mb-6 text-gray-600">Explore my CV and connect with me for exciting job opportunities in the accounting field.</p>
                 <div class="flex space-x-4">
                     <button class="bg-black text-white px-6 py-2 rounded">View</button>
-                    <button class="border border-black px-6 py-2 rounded">Contact</button>
+                    <button class="border border-black px-6 py-2 rounded">
+                        <a href="#contact">Contact</a>
+                    </button>
                 </div>
             </div>
             <!-- Image Placeholder -->
@@ -210,7 +260,7 @@
     </section>
 
 
-<!-- Get to know me section -->
+    <!-- Personal Introduction Section -->
 <section class="py-16 px-6 lg:px-20 bg-white text-black">
     <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
         <!-- Image Placeholder -->
@@ -223,17 +273,58 @@
             <p class="text-lg mb-6 text-gray-600 text-end">Learn more about me and my journey</p>
             <div class="flex space-x-4">
                 <button class="bg-black text-white px-6 py-2 rounded">View</button>
-                <button class="border border-black px-6 py-2 rounded">Contact</button>
+                <button class="border border-black px-6 py-2 rounded">
+                    <a href="#contact">Contact</a>
+                </button>
             </div>
         </div>
     </div>
 </section>
 
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-16 px-6 lg:px-20 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-8 font-lora text-center">Get in Touch</h2>
+            <div class="max-w-2xl mx-auto">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" id="name" name="name" required
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" name="email" required
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                        <textarea id="message" name="message" rows="4" required
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit"
+                            class="w-full bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition-colors duration-200">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+                <div id="success-message" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-md">
+                    Thank you for your message. I'll get back to you soon!
+                </div>
+                <div id="error-message" class="hidden mt-4 p-4 bg-red-100 text-red-700 rounded-md">
+                    Sorry, there was an error sending your message. Please try again.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
     <footer class="bg-black border-t border-white/10">
         <div class="container mx-auto px-6 lg:px-20 py-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4 font-lora">Meaghan D'Arcy</h3>
+                    <h3 class="text-xl font-bold mb-4 font-lora">Contact Me</h3>
                     <p class="text-gray-400">Account Technician</p>
                     <p class="text-gray-400">Dublin, Ireland</p>
                 </div>
