@@ -5,34 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Meaghan D'Arcy is a qualified Accounting Technician based in Dublin, Ireland, offering expertise in financial reporting, tax preparation, and budget management.">
     <title>Meaghan D'Arcy | Account Technician</title>
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-          
-            theme: {
-                extend: {
-                    fontFamily: {
-                        lora: ['Lora', 'serif'],
-                    },
-                },
-            },
-        }
-    </script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your public key
-        })();
-    </script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Scripts -->
+    <script src="js/tailwind.config.js"></script>
+    <script src="js/main.js" defer></script>
 </head>
 <body class="bg-white text-black font-sans">
-    <!-- Navigation Bar -->
-    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-black/60 border-b
-    border-white/10 ">
+    <!-- Navigation -->
+    <nav class="navbar backdrop-blur-md bg-black/60 border-b border-white/10">
       <div class="container mx-auto px-6 lg:px-20">
         <div class="flex items-center justify-between h-16">
           <div class="text-xl font-bold text-white font-lora">Meaghan D'Arcy</div>
@@ -64,24 +49,9 @@
         </ul>
       </div>
     </nav>
-    <script>
-      document.getElementById('menu-button').addEventListener('click', function() {
-        const menu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
-        
-        if (menu.classList.contains('hidden')) {
-          menu.classList.remove('hidden');
-          menuIcon.classList.add('opacity-0');
-          closeIcon.classList.remove('opacity-0');
-        } else {
-          menu.classList.add('hidden');
-          menuIcon.classList.remove('opacity-0');
-          closeIcon.classList.add('opacity-0');
-        }
-      });
-    </script>
 
+    <!-- Main Content -->
+    <main>
     <!-- Hero Section -->
     <section class="flex p-0 bg-black text-white py-20" id="home">
         <div class="container mx-auto px-6 lg:px-20 mt-20 flex justify-around items-center">
@@ -232,73 +202,6 @@
   </div>
 </section>
 
-<!-- Timeline Section -->
-<section class="py-20 px-6 lg:px-20 bg-gray-50" id="timeline">
-    <div class="container mx-auto">
-        <h2 class="text-4xl font-bold mb-12 text-center font-lora">My Journey</h2>
-        <div class="relative">
-            <!-- Vertical Line -->
-            <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-black to-gray-300"></div>
-            
-            <!-- Timeline Items -->
-            <div class="timeline-container">
-                <!-- Item 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <img src="images/placeholder.png" alt="Dublin Seaside" class="timeline-image">
-                        <h3 class="text-2xl font-bold mb-3 font-lora">Dublin Roots</h3>
-                        <p>Originally from a seaside town on the North coast of Dublin, my journey began in the world of hairdressing where I spent 12 fulfilling years crafting styles and building client relationships.</p>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <img src="images/placeholder.png" alt="Career Change" class="timeline-image">
-                        <h3 class="text-2xl font-bold mb-3 font-lora">Career Transformation</h3>
-                        <p>Made a bold decision to trade scissors for spreadsheets, embarking on a new journey as an accounting technician—a change that opened up exciting new possibilities.</p>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <img src="images/placeholder.png" alt="Valencia Adventure" class="timeline-image">
-                        <h3 class="text-2xl font-bold mb-3 font-lora">Spanish Adventure</h3>
-                        <p>Summer 2023 marked the beginning of an 18-month adventure in Valencia, Spain, where I immersed myself in the culture and mastered the art of paella appreciation!</p>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <img src="images/placeholder.png" alt="World Travel" class="timeline-image">
-                        <h3 class="text-2xl font-bold mb-3 font-lora">Global Explorer</h3>
-                        <p>Backpacked through Colombia, Peru, Australia, New Zealand, and The Philippines, collecting unforgettable experiences and perspectives along the way.</p>
-                    </div>
-                </div>
-
-                <!-- Item 5 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <img src="images/placeholder.png" alt="Present Day" class="timeline-image">
-                        <h3 class="text-2xl font-bold mb-3 font-lora">Present Day</h3>
-                        <p>Now seeking to bring my unique blend of professional
-                        expertise, global perspective, and positive energy to a
-                        forward-thinking accounting team. When not crunching
-                        numbers, you'll find me exploring new places, hiking
-                        up mountains or planning the next adventure!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
     <!-- CV Download Section -->
     <section class="py-16 px-6 lg:px-20">
@@ -365,8 +268,8 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer Section -->
+  </main>
+    <!-- Footer -->
     <footer class="bg-black border-t border-white/10">
         <div class="container mx-auto px-6 lg:px-20 py-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -408,6 +311,5 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>

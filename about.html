@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn more about Meaghan D'Arcy's journey from hairdressing to accounting">
+    <title>About Me | Meaghan D'Arcy</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Scripts -->
+    <script src="js/tailwind.config.js"></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body class="bg-white text-black font-sans">
+    <!-- Navigation -->
+    <nav class="navbar backdrop-blur-md bg-black/60 border-b border-white/10">
+      <div class="container mx-auto px-6 lg:px-20">
+        <div class="flex items-center justify-between h-16">
+          <div class="text-xl font-bold text-white font-lora">
+            <a href="index.html">Meaghan D'Arcy</a>
+          </div>
+          <div class="lg:hidden justify-end">
+            <button id="menu-button" class="text-white focus:outline-none relative">
+              <svg id="menu-icon" class="w-6 h-6 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+              </svg>
+              <svg id="close-icon" class="w-6 h-6 absolute top-0 left-0 opacity-0 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <ul id="menu" class="hidden lg:flex space-x-8">
+            <li><a href="#" class="text-white hover:text-gray-300 transition-colors duration-200 font-bold">About</a></li>
+            <li><a href="index.html#experience" class="text-white hover:text-gray-300 transition-colors duration-200">Experience</a></li>
+            <li><a href="index.html#contact" class="text-white hover:text-gray-300 transition-colors duration-200">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div id="mobile-menu" class="lg:hidden hidden">
+        <ul class="flex flex-col space-y-4 p-4 items-end">
+          <li><a href="index.html" class="text-white hover:text-gray-300 transition-colors duration-200">Home</a></li>
+          <li><a href="#" class="text-white hover:text-gray-300 transition-colors duration-200 font-bold">About</a></li>
+          <li><a href="index.html#experience" class="text-white hover:text-gray-300 transition-colors duration-200">Experience</a></li>
+          <li><a href="index.html#contact" class="text-white hover:text-gray-300 transition-colors duration-200">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="pt-16">
+        <!-- Timeline Section -->
+<section class="py-20 px-0 lg:px-20 bg-gray-50" id="timeline">
+    <div class="container">
+        <h2 class="text-4xl font-bold mb-12 text-center font-lora">My Journey</h2>
+        <div class="relative">
+            <!-- Vertical Line -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-black to-gray-300"></div>
+            
+            <!-- Timeline Items -->
+            <div class="timeline-container">
+                <!-- Item 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <img src="images/meaghan-image-1.webp" alt="Dublin Seaside" class="timeline-image">
+                        <h3 class="text-2xl font-bold mb-3 font-lora">Dublin Roots</h3>
+                        <p>Originally from a seaside town on the North coast of Dublin, my journey began in the world of hairdressing where I spent 12 fulfilling years crafting styles and building client relationships.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <img src="images/meaghan-image-13.webp" alt="Career Change" class="timeline-image">
+                        <h3 class="text-2xl font-bold mb-3 font-lora">Career Transformation</h3>
+                        <p>Made a bold decision to trade scissors for spreadsheets, embarking on a new journey as an accounting technician—a change that opened up exciting new possibilities.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <img src="images/meaghan-image-15.webp" alt="Valencia Adventure" class="timeline-image">
+                        <h3 class="text-2xl font-bold mb-3 font-lora">Spanish Adventure</h3>
+                        <p>Summer 2023 marked the beginning of an 18-month adventure in Valencia, Spain, where I immersed myself in the culture and mastered the art of paella appreciation!</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <img src="images/meaghan-image-4.webp" alt="World Travel" class="timeline-image">
+                        <h3 class="text-2xl font-bold mb-3 font-lora">Global Explorer</h3>
+                        <p>Backpacked through Colombia, Peru, Australia, New Zealand, and The Philippines, collecting unforgettable experiences and perspectives along the way.</p>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <img src="images/meaghan-image-5.webp" alt="Present Day" class="timeline-image">
+                        <h3 class="text-2xl font-bold mb-3 font-lora">Present Day</h3>
+                        <p>Now seeking to bring my unique blend of professional
+                        expertise, global perspective, and positive energy to a
+                        forward-thinking accounting team. When not crunching
+                        numbers, you'll find me exploring new places, hiking
+                        up mountains or planning the next adventure!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10">
+        <div class="container mx-auto px-6 lg:px-20 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 font-lora text-white">Contact Me</h3>
+                    <p class="text-gray-400">Accounting Technician</p>
+                    <p class="text-gray-400">Dublin, Ireland</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 font-lora text-white">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-200">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">About</a></li>
+                        <li><a href="index.html#experience" class="text-gray-400 hover:text-white transition-colors duration-200">Experience</a></li>
+                    </ul>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-bold mb-4 font-lora text-white">Connect</h3>
+                    <div class="flex flex-col md:justify-start space-y-4">
+                        <!-- ...existing social links... -->
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Meaghan D'Arcy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
