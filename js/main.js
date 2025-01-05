@@ -5,12 +5,18 @@ function initMobileMenu() {
     const menuIcon = document.getElementById('menu-icon');
     const closeIcon = document.getElementById('close-icon');
 
-    menuButton.addEventListener('click', () => {
-        const isHidden = menu.classList.contains('hidden');
+    function toggleMenu() {
+        const isOpen = !menu.classList.contains('hidden');
+        
+        // First handle the icons
+        menuIcon.classList.toggle('opacity-0', !isOpen);
+        closeIcon.classList.toggle('opacity-0', isOpen);
+        
+        // Then toggle the menu visibility
         menu.classList.toggle('hidden');
-        menuIcon.classList.toggle('opacity-0', !isHidden);
-        closeIcon.classList.toggle('opacity-0', isHidden);
-    });
+    }
+
+    menuButton.addEventListener('click', toggleMenu);
 }
 
 // Timeline animation
