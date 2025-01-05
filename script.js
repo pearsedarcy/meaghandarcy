@@ -58,8 +58,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitButton.innerHTML = 'Send Message';
             });
     });
-});
 
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Stop observing once animation is triggered
+            }
+        });
+    }, {
+        threshold: 0.2 // Trigger when 20% of the item is visible
+    });
+
+    timelineItems.forEach(item => {
+        observer.observe(item);
+    });
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     AOS.init();

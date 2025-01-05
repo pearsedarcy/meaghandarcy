@@ -118,6 +118,34 @@ footer {
     padding: 2rem 0;
     width: 100%;
     position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.timeline-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Remove or comment out the previous animation keyframes and sequences */
+/* 
+.timeline-item:nth-child(1) { --sequence: 1; }
+.timeline-item:nth-child(2) { --sequence: 2; }
+.timeline-item:nth-child(3) { --sequence: 3; }
+.timeline-item:nth-child(4) { --sequence: 4; }
+.timeline-item:nth-child(5) { --sequence: 5; }
+*/
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .timeline-item:nth-child(even) {
@@ -142,7 +170,7 @@ footer {
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .timeline-item:nth-child(odd) .timeline-content {
@@ -220,5 +248,10 @@ footer {
     .timeline-item:nth-child(odd) .timeline-content:hover,
     .timeline-item:nth-child(even) .timeline-content:hover {
         transform: translateY(-5px);
+    }
+
+    .timeline-item {
+        opacity: 1;
+        transform: none;
     }
 }
