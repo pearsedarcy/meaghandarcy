@@ -35,8 +35,94 @@ function initTimelineAnimation() {
     });
 }
 
+// Add scroll-based animations
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                if (entry.target.dataset.delay) {
+                    entry.target.style.animationDelay = `${entry.target.dataset.delay}ms`;
+                }
+            }
+        });
+    }, { threshold: 0.1 });
+
+    animatedElements.forEach(el => observer.observe(el));
+}
+
+// Add navbar scroll functionality
+function initNavbar() {
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
+    const scrollThreshold = 100; // Minimum scroll before hiding
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // Add scrolled class for styling
+        if (currentScroll > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        // Handle navbar visibility
+        if (currentScroll <= 0) {
+            navbar.classList.remove('hidden');
+            return;
+        }
+        
+        if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
+            // Scrolling down & past threshold - hide navbar
+            navbar.classList.add('hidden');
+        } else if (currentScroll < lastScroll) {
+            // Scrolling up - show navbar
+            navbar.classList.remove('hidden');
+        }
+        
+        lastScroll = currentScroll;
+    }, { passive: true });
+}
+
+// Loading animation
+function initLoadingAnimation() {
+    const loader = document.getElementById('loader');
+    const content = document.getElementById('content');
+    const logoPath = document.querySelector('#Selection');
+    
+    // Reset animation state
+    if (logoPath) {
+        logoPath.style.strokeDashoffset = '1000';
+        logoPath.style.fill = 'transparent';
+    }
+    
+    // Force browser to acknowledge the reset
+    void loader.offsetWidth;
+    
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            content.style.opacity = '1';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 50);
+        }, 700); // Reduced from 2500 to 1000ms
+    });
+}
+
 // Initialize all functionality
 document.addEventListener('DOMContentLoaded', () => {
+    initLoadingAnimation();
     initMobileMenu();
     initTimelineAnimation();
+    initScrollAnimations();
+    initNavbar();
+});
+
+// Add reload handling
+window.addEventListener('beforeunload', () => {
+    localStorage.setItem('shouldAnimate', 'true');
 });
