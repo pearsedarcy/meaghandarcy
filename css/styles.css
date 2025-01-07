@@ -11,7 +11,7 @@
     --background: #f1faee;      /* Off white - background */
     --text-dark: #1d3557;       /* Deep blue - text */
     --text-light: #f1faee;      /* Off white - light text */
-    --secondary-bg: #a8dadc;    /* Light blue - secondary background */
+    --secondary-bg: #b7f1ff;    /* Light blue - secondary background */
 }
 
 * {
@@ -39,7 +39,7 @@ section {
 
 /* Navigation */
 .navbar {
-    padding: 0.5rem 1rem;
+    padding-right: 1rem;
     position: fixed;
     width: 100%;
     top: 0;
@@ -60,7 +60,6 @@ section {
     justify-content: space-between;
     max-width: 1558px;
     margin: 0 auto;
-    padding: 0 1.5rem;
 }
 
 .nav-menu {
