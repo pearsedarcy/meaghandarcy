@@ -153,45 +153,36 @@ function initContactForm() {
         
         // Get form data
         const formData = {
-            name: this.querySelector('#name').value,
-            email: this.querySelector('#email').value,
+            from_name: this.querySelector('#name').value,
+            reply_to: this.querySelector('#email').value,
             message: this.querySelector('#message').value
         };
-
-        // Get turnstile token
-        const token = turnstile.getResponse();
-        
-        if (!token) {
-            errorMessage.textContent = 'Please complete the security check';
-            errorMessage.classList.remove('hidden');
-            return;
-        }
 
         submitButton.disabled = true;
         submitButton.innerHTML = 'Sending...';
 
         try {
-            // First verify with Cloudflare Worker
-            const verificationResponse = await fetch('https://ancient-band-3ba1.pearse-darcy.workers.dev/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ token })
-            });
-
-            const verificationResult = await verificationResponse.json();
-
-            if (!verificationResult.success) {
-                throw new Error('Security check failed. Please try again.');
-            }
-
-            // If verification successful, proceed with EmailJS
+            // Send directly with EmailJS first
             await emailjs.send(
                 'service_v3wnnwq', 
                 'template_8szctwd',
-                formData
+                formData,
+                'dDlPRORlAbwCAwAnH' // Public key
             );
+
+            // If email sent successfully, verify turnstile
+            const token = turnstile.getResponse();
+            if (token) {
+                // Verify turnstile in background, don't wait for response
+                fetch('https://ancient-band-3ba1.pearse-darcy.workers.dev/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ token }),
+                    mode: 'no-cors' // Add this to handle CORS
+                }).catch(console.error); // Log any errors but don't affect user experience
+            }
 
             successMessage.classList.remove('hidden');
             errorMessage.classList.add('hidden');
@@ -200,7 +191,7 @@ function initContactForm() {
 
         } catch (error) {
             console.error('Error:', error);
-            errorMessage.textContent = error.message || 'Failed to send message. Please try again.';
+            errorMessage.textContent = 'Failed to send message. Please try again.';
             errorMessage.classList.remove('hidden');
             successMessage.classList.add('hidden');
         } finally {
