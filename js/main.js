@@ -113,6 +113,66 @@ function initLoadingAnimation() {
     });
 }
 
+// Smooth scrolling functionality
+function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Contact form handling
+function initContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
+        const submitButton = this.querySelector('button[type="submit"]');
+        
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Sending...';
+        
+        const formData = {
+            name: this.name.value,
+            email: this.email.value,
+            message: this.message.value
+        };
+        
+        emailjs.send('service_v3wnnwq', '7EalFVq1zg+ORnfyYT/Gtg==', formData)
+            .then(function() {
+                successMessage.classList.remove('hidden');
+                errorMessage.classList.add('hidden');
+                contactForm.reset();
+            })
+            .catch(function(error) {
+                errorMessage.classList.remove('hidden');
+                successMessage.classList.add('hidden');
+                console.error('Error:', error);
+            })
+            .finally(function() {
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Send Message';
+            });
+    });
+}
+
 // Initialize all functionality
 document.addEventListener('DOMContentLoaded', () => {
     initLoadingAnimation();
@@ -120,6 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initTimelineAnimation();
     initScrollAnimations();
     initNavbar();
+    initSmoothScrolling();
+    initContactForm();
+
 });
 
 // Add reload handling

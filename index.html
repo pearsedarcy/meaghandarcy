@@ -43,7 +43,7 @@
   }
 </style>
 </head>
-<body class="bg-white text-black font-sans">
+<body class="font-sans">
 <!-- Loader -->
 <div id="loader">
   <img width="200px" src="images/logos/meaghan-icon-100px.svg" alt="Loading..." />
@@ -74,9 +74,9 @@
         </div>
         <div id="mobile-menu" class="lg:hidden hidden">
             <ul class="flex flex-col space-y-4 p-4 items-end">
-                <li><a href="/about.html" class="text-white hover:text-gray-300 transition-colors duration-200">About</a></li>
-                <li><a href="#experience" class="text-white hover:text-gray-300 transition-colors duration-200">Experience</a></li>
-                <li><a href="#contact" class="text-white hover:text-gray-300 transition-colors duration-200">Contact</a></li>
+                <li><a href="/about.html" class=" transition-colors duration-200">About</a></li>
+                <li><a href="#experience" class="  transition-colors duration-200">Experience</a></li>
+                <li><a href="#contact" class=" transition-colors duration-200">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -85,10 +85,10 @@
     <main>
     <!-- Hero Section -->
     <section class="flex p-0 py-20" id="home">
-      <div class="container mx-auto px-6 lg:px-20  sm:mt-20 flex flex-col lg:flex-row justify-around items-center">
+      <div class="container mx-auto px-6 lg:px-20  sm:mt-20 flex flex-col-reverse lg:flex-row justify-around items-center">
         <!-- Left Text Section -->
         <div class="w-full lg:w-1/2">
-          <h1 class="text-3xl lg:text-4xl lg:leading-[1.6] font-bold mb-4 font-lora">
+          <h1 class="text-3xl lg:text-4xl lg:leading-[1.6] font-bold mb-4 font-lora typewriter">
             Welcome to<br/>
             Meaghan D'Arcy's<br />
             Professional Profile
@@ -103,7 +103,8 @@
           </div>
         </div>
         <!-- Right Image Section -->
-        <div class="relative w-full max-w-[400px] h-[400px] mx-auto lg:mx-0 mt-8 lg:mt-0">
+        <div class="relative w-full max-w-[200px] h-[200px] sm:max-w-[400px]
+        sm:h-[400px] mx-auto lg:mx-0 mt-8 lg:mt-0 mb-5">
           <div class="absolute inset-1 bg-white rounded-full"></div>
           <img
             src="images/profile-pic.webp"
@@ -229,7 +230,7 @@
 
 
     <!-- CV Download Section -->
-    <section class="py-16 px-6 lg:px-20">
+    <section class=" alt-bg  py-16 px-6 lg:px-20">
       <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8
       items-center">
       
@@ -239,7 +240,9 @@
           <p class="text-lg mb-6 text-gray-600">Explore my CV and connect with me for exciting job opportunities in the accounting field.</p>
           <div class="flex space-x-4">
             <a href="images/cv-meaghan-darcy.pdf" target="_blank"><button class="bg-black text-white px-6 py-2 rounded">View</button></a>
-            <a href="images/cv-meaghan-darcy.pdf" download><button class="border border-black px-6 py-2 rounded">Download</button></a>
+            <a href="images/cv-meaghan-darcy.pdf" download><button
+            class="bg-white border border-black px-6 py-2
+            rounded">Download</button></a>
           </div>
         </div>
           <!-- Image Section -->
