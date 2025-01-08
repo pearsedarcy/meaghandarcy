@@ -148,25 +148,20 @@ function initContactForm() {
         
         submitButton.disabled = true;
         submitButton.innerHTML = 'Sending...';
-        
-        const formData = {
-            name: this.name.value,
-            email: this.email.value,
-            message: this.message.value
-        };
-        
-        emailjs.send('service_v3wnnwq', '7EalFVq1zg+ORnfyYT/Gtg==', formData)
-            .then(function() {
+
+        // Using emailjs.sendForm() instead of emailjs.send()
+        emailjs.sendForm('service_v3wnnwq', 'template_8szctwd', this)
+            .then(() => {
                 successMessage.classList.remove('hidden');
                 errorMessage.classList.add('hidden');
                 contactForm.reset();
             })
-            .catch(function(error) {
+            .catch((error) => {
                 errorMessage.classList.remove('hidden');
                 successMessage.classList.add('hidden');
                 console.error('Error:', error);
             })
-            .finally(function() {
+            .finally(() => {
                 submitButton.disabled = false;
                 submitButton.innerHTML = 'Send Message';
             });

@@ -336,5 +336,12 @@
    </div>
 </footer>
 
+<!-- Add these scripts before closing body tag -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    (function() {
+        emailjs.init("dDlPRORlAbwCAwAnH"); // Replace with your actual EmailJS public key
+    })();
+</script>
 </body>
 </html>
