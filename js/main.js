@@ -134,19 +134,6 @@ function initSmoothScrolling() {
     });
 }
 
-// Add Turnstile callback functions
-window.onTurnstileSuccess = function(token) {
-    console.log("Turnstile success");
-    document.getElementById('error-message').classList.add('hidden');
-};
-
-window.onTurnstileError = function() {
-    console.error("Turnstile error");
-    const errorMessage = document.getElementById('error-message');
-    errorMessage.textContent = 'Security check failed. Please try again.';
-    errorMessage.classList.remove('hidden');
-};
-
 // Contact form handling
 function initContactForm() {
     const contactForm = document.getElementById('contact-form');
@@ -159,9 +146,8 @@ function initContactForm() {
         const errorMessage = document.getElementById('error-message');
         const submitButton = this.querySelector('button[type="submit"]');
         
-        // Get the turnstile token using the correct method
-        const turnstileWidget = document.querySelector('.cf-turnstile');
-        const turnstileResponse = turnstileWidget ? turnstile.getResponse(turnstileWidget) : null;
+        // Get the turnstile token
+        const turnstileResponse = turnstile.getResponse();
         
         if (!turnstileResponse) {
             errorMessage.textContent = 'Please complete the security check';
@@ -173,10 +159,10 @@ function initContactForm() {
         submitButton.innerHTML = 'Sending...';
 
         try {
-            const formData = new FormData(this);
-            formData.append('cf-turnstile-response', turnstileResponse);
-
-            await emailjs.sendForm('service_v3wnnwq', 'template_8szctwd', this);
+            // Using emailjs.sendForm() with turnstile token
+            await emailjs.sendForm('service_v3wnnwq', 'template_8szctwd', this, {
+                'cf-turnstile-response': turnstileResponse
+            });
             
             successMessage.classList.remove('hidden');
             errorMessage.classList.add('hidden');
@@ -186,15 +172,89 @@ function initContactForm() {
             turnstile.reset();
             
         } catch (error) {
-            console.error('Error:', error);
-            errorMessage.textContent = 'Failed to send message. Please try again.';
             errorMessage.classList.remove('hidden');
             successMessage.classList.add('hidden');
+            console.error('Error:', error);
         } finally {
             submitButton.disabled = false;
             submitButton.innerHTML = 'Send Message';
         }
     });
+}
+
+// Turnstile callback
+window.onTurnstileSuccess = function(token) {
+    console.log("Turnstile callback success");
+};
+
+// Handle form submission
+async function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+    const submitButton = form.querySelector('button[type="submit"]');
+    
+    // Get form data
+    const formData = {
+        name: form.querySelector('#name').value,
+        email: form.querySelector('#email').value,
+        message: form.querySelector('#message').value
+    };
+
+    // Get turnstile token
+    const token = turnstile.getResponse();
+    
+    if (!token) {
+        errorMessage.textContent = 'Please complete the security check';
+        errorMessage.classList.remove('hidden');
+        return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.innerHTML = 'Sending...';
+
+    try {
+        // First verify with Cloudflare Worker
+        const verificationResponse = await fetch('https://ancient-band-3ba1.pearse-darcy.workers.dev/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ token })
+        });
+
+        const verificationResult = await verificationResponse.json();
+
+        if (!verificationResult.success) {
+            throw new Error('Turnstile verification failed');
+        }
+
+        // If verification successful, proceed with EmailJS
+        await emailjs.send(
+            'service_v3wnnwq', 
+            'template_8szctwd',
+            {
+                ...formData,
+                'cf-turnstile-response': token
+            }
+        );
+
+        successMessage.classList.remove('hidden');
+        errorMessage.classList.add('hidden');
+        form.reset();
+        turnstile.reset();
+
+    } catch (error) {
+        console.error('Error:', error);
+        errorMessage.textContent = error.message || 'Failed to send message. Please try again.';
+        errorMessage.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+    } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = 'Send Message';
+    }
 }
 
 // Initialize all functionality
@@ -205,11 +265,31 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initNavbar();
     initSmoothScrolling();
-    initContactForm();
-
+    // Remove the old form initialization if it exists
+    // The form is now handled by handleFormSubmit
 });
 
 // Add reload handling
 window.addEventListener('beforeunload', () => {
     localStorage.setItem('shouldAnimate', 'true');
 });
+
+
+async function handleSubmit() {
+    const token = document.querySelector('[name="cf-turnstile-response"]').value;
+  
+    const response = await fetch("https://ancient-band-3ba1.pearse-darcy.workers.dev/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token: token }),
+    });
+  
+    const result = await response.json();
+  
+    if (result.success) {
+      alert("CAPTCHA verified successfully!");
+      // Proceed with EmailJS or other actions
+    } else {
+      alert("CAPTCHA verification failed.");
+    }
+  }
