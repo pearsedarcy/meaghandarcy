@@ -276,6 +276,10 @@
                         <textarea id="message" name="message" rows="4" required
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black"></textarea>
                     </div>
+                    
+                    <!-- Add Turnstile widget before submit button -->
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAA432DEA5UhaWL97"></div>
+                    
                     <div>
                         <button type="submit" class="primary w-full px-6 py-3 rounded-md">
                             Send Message
@@ -338,6 +342,7 @@
 
 <!-- Add these scripts before closing body tag -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
     (function() {
         emailjs.init("dDlPRORlAbwCAwAnH"); // Replace with your actual EmailJS public key
