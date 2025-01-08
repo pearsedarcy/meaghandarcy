@@ -134,6 +134,19 @@ function initSmoothScrolling() {
     });
 }
 
+// Add Turnstile callback functions
+window.onTurnstileSuccess = function(token) {
+    console.log("Turnstile success");
+    document.getElementById('error-message').classList.add('hidden');
+};
+
+window.onTurnstileError = function() {
+    console.error("Turnstile error");
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.textContent = 'Security check failed. Please try again.';
+    errorMessage.classList.remove('hidden');
+};
+
 // Contact form handling
 function initContactForm() {
     const contactForm = document.getElementById('contact-form');
@@ -146,8 +159,9 @@ function initContactForm() {
         const errorMessage = document.getElementById('error-message');
         const submitButton = this.querySelector('button[type="submit"]');
         
-        // Get the turnstile token
-        const turnstileResponse = turnstile.getResponse();
+        // Get the turnstile token using the correct method
+        const turnstileWidget = document.querySelector('.cf-turnstile');
+        const turnstileResponse = turnstileWidget ? turnstile.getResponse(turnstileWidget) : null;
         
         if (!turnstileResponse) {
             errorMessage.textContent = 'Please complete the security check';
@@ -159,10 +173,10 @@ function initContactForm() {
         submitButton.innerHTML = 'Sending...';
 
         try {
-            // Using emailjs.sendForm() with turnstile token
-            await emailjs.sendForm('service_v3wnnwq', 'template_8szctwd', this, {
-                'cf-turnstile-response': turnstileResponse
-            });
+            const formData = new FormData(this);
+            formData.append('cf-turnstile-response', turnstileResponse);
+
+            await emailjs.sendForm('service_v3wnnwq', 'template_8szctwd', this);
             
             successMessage.classList.remove('hidden');
             errorMessage.classList.add('hidden');
@@ -172,9 +186,10 @@ function initContactForm() {
             turnstile.reset();
             
         } catch (error) {
+            console.error('Error:', error);
+            errorMessage.textContent = 'Failed to send message. Please try again.';
             errorMessage.classList.remove('hidden');
             successMessage.classList.add('hidden');
-            console.error('Error:', error);
         } finally {
             submitButton.disabled = false;
             submitButton.innerHTML = 'Send Message';
